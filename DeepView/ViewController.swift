@@ -28,20 +28,24 @@ class ViewController: UIViewController {
         } else {
             newView.backgroundColor = UIColor.green
         }
+        
+        newView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(newView)
         
-        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[newView]",
-                                                         options: NSLayoutFormatOptions.alignAllCenterY,
-                                                         metrics: nil,
-                                                         views: ["superview":
-                                                            view, "newView": newView])
-        view.addConstraints(constraints)
+//        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[newView]",
+//                                                         options: NSLayoutFormatOptions.alignAllCenterY,
+//                                                         metrics: nil,
+//                                                         views: ["superview":
+//                                                            view, "newView": newView])
+//        view.addConstraints(constraints)
+//
+//        constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[superview]-(<=1)-[newView]",
+//                                                     options: NSLayoutFormatOptions.alignAllCenterX,
+//                                                     metrics: nil,
+//                                                     views: ["superview": view, "newView": newView])
+//        view.addConstraints(constraints)
         
-        constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[superview]-(<=1)-[newView]",
-                                                     options: NSLayoutFormatOptions.alignAllCenterX,
-                                                     metrics: nil,
-                                                     views: ["superview": view, "newView": newView])
-        view.addConstraints(constraints)
+        NSLayoutConstraint.activate([newView.centerXAnchor.constraint(equalTo: view.centerXAnchor), newView.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
         
         
         layerView(inside: newView, number: number - 1)

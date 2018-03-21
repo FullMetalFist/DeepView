@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         
         let reducedWidth = view.bounds.width / 2
         let reducedHeight = view.bounds.height / 2
+        let smallerOfHeightWidth = (reducedWidth > reducedHeight ? reducedWidth : reducedHeight)
         
         let newView = UIView(frame: CGRect(x: 0, y: 0, width: reducedWidth, height: reducedHeight))
         if number % 2 == 0 {
@@ -35,30 +36,8 @@ class ViewController: UIViewController {
         newView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(newView)
         
-//        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[newView]",
-//                                                         options: NSLayoutFormatOptions.alignAllCenterY,
-//                                                         metrics: nil,
-//                                                         views: ["superview":
-//                                                            view, "newView": newView])
-//        view.addConstraints(constraints)
-//
-//        constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[superview]-(<=1)-[newView]",
-//                                                     options: NSLayoutFormatOptions.alignAllCenterX,
-//                                                     metrics: nil,
-//                                                     views: ["superview": view, "newView": newView])
-//        view.addConstraints(constraints)
-        
-//        newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-//        let widthC = NSLayoutConstraint(item: newView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.5, constant: 1)
-//        let heightC = NSLayoutConstraint(item: newView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 0.5, constant: 1)
-//        let midXC = NSLayoutConstraint(item: newView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 0.5, constant: 1)
-//        let midYC = NSLayoutConstraint(item: newView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 1)
-        
-        
-        newView.widthAnchor.constraint(equalToConstant: reducedWidth).isActive = true
-        newView.heightAnchor.constraint(equalToConstant: reducedHeight).isActive = true
+        newView.widthAnchor.constraint(equalToConstant: smallerOfHeightWidth).isActive = true
+        newView.heightAnchor.constraint(equalToConstant: smallerOfHeightWidth).isActive = true
         newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         

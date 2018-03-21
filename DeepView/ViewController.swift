@@ -22,7 +22,10 @@ class ViewController: UIViewController {
             return
         }
         
-        let newView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width / 2, height: view.bounds.height / 2))
+        let reducedWidth = view.bounds.width / 2
+        let reducedHeight = view.bounds.height / 2
+        
+        let newView = UIView(frame: CGRect(x: 0, y: 0, width: reducedWidth, height: reducedHeight))
         if number % 2 == 0 {
             newView.backgroundColor = UIColor.orange
         } else {
@@ -45,8 +48,14 @@ class ViewController: UIViewController {
 //                                                     views: ["superview": view, "newView": newView])
 //        view.addConstraints(constraints)
         
-        NSLayoutConstraint.activate([newView.centerXAnchor.constraint(equalTo: view.centerXAnchor), newView.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+//        newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        let widthC = NSLayoutConstraint(item: newView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.5, constant: 1)
+        let heightC = NSLayoutConstraint(item: newView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 0.5, constant: 1)
+        let midXC = NSLayoutConstraint(item: newView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 0.5, constant: 1)
+        let midYC = NSLayoutConstraint(item: newView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 1)
+        NSLayoutConstraint.activate([widthC, heightC, midXC, midYC])
         
         layerView(inside: newView, number: number - 1)
     }
